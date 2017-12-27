@@ -1,0 +1,73 @@
+<template name="home">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Ajouter Etudiant</h3>
+        </div>
+        <div class="panel-body">
+            <form class="ajouterEtudiant">
+                <table>
+                    <tr>
+                        <td>matricule</td>
+                        <td>
+                            <input name="matricule" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>nom</td>
+                        <td>
+                            <input name="nom" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>prenom</td>
+                        <td>
+                            <input name="prenom" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>
+                            <input name="email" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>gsm</td>
+                        <td>
+                            <input name="gsm" />
+                        </td>
+                    </tr>
+                </table>
+
+                <input type="submit" value="Ajouter" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+
+    <table border="1">
+        <tr>
+            <td>matricule</td>
+            <td>nom</td>
+            <td>prenom</td>
+            <td>email</td>
+            <td>gsm</td>
+            <td>action</td>
+        </tr>
+        {{#each stagiaires}}
+        <tr>
+            <td>{{matricule}}</td>
+            <td>{{nom}}</td>
+            <td>{{prenom}}</td>
+            <td>{{email}}</td>
+            <td>{{gsm}}</td>
+            <td>
+                <button name="delete" class="btnDelete">delete</button>
+                <button name="Details" class="btnDetails">Detail</button>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+    <br>
+    <h4>upload</h4>
+    <input type="file" name="upload" />
+</template>
