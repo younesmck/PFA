@@ -17,14 +17,25 @@ Template.home.onCreated(function helloOnCreated() {
   Template.home.events({
     'submit .ajouterEtudiant'(event, instance) {
       event.preventDefault();
-  
-      STAGIAIRES.insert({
-        matricule: event.target.matricule.value,
-        nom: event.target.nom.value,
-        prenom: event.target.prenom.value,
-        email: event.target.email.value,
-        gsm: event.target.gsm.value
-      });
+      if(event.target.modifier.value!=""){
+        STAGIAIRES.update({_id:event.target.modifier.value},{
+          matricule: event.target.matricule.value,
+          nom: event.target.nom.value,
+          prenom: event.target.prenom.value,
+          email: event.target.email.value,
+          gsm: event.target.gsm.value
+        });
+      }
+      else{
+        STAGIAIRES.insert({
+          matricule: event.target.matricule.value,
+          nom: event.target.nom.value,
+          prenom: event.target.prenom.value,
+          email: event.target.email.value,
+          gsm: event.target.gsm.value
+        });
+      }
+      
     
   
     event.target.matricule.value = '';
@@ -32,15 +43,24 @@ Template.home.onCreated(function helloOnCreated() {
     event.target.prenom.value = '';
     event.target.email.value = '';
     event.target.gsm.value = '';
+    event.target.modifier.value = '';
   
     },'click .btnDelete'(){
       STAGIAIRES.remove(this._id);
+    },'click [name="Vider"]'(){
+      event.target.matricule.value = '';
+    event.target.nom.value = '';
+    event.target.prenom.value = '';
+    event.target.email.value = '';
+    event.target.gsm.value = '';
+    event.target.modifier.value = '';
     },'click .btnDetails'(){
       $('input[name="matricule"]').val(this.matricule);
       $('input[name="nom"]').val(this.nom);
       $('input[name="prenom"]').val(this.prenom);
       $('input[name="email"]').val(this.email);
       $('input[name="gsm"]').val(this.gsm);
+      $('input[name="modifier"]').val(this._id);
     },'change [name="upload"]'(event,template){
       Papa.parse( event.target.files[0], {
         header: true,
