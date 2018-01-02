@@ -1,51 +1,89 @@
 <template name="home">
 
-    <div class="panel panel-default">
+    <div style="width:60%; margin-left:20%;" class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Ajouter Etudiant</h3>
+            <h3 class="panel-title">Ajouter un étudiant</h3>
         </div>
-        <div class="panel-body">
+        <div style="padding-left: 23%;" class="panel-body">
             <form class="ajouterEtudiant">
                 <table>
-                    <input name="modifier" value="" type="hidden"/>
+                    <input type="hidden" value="" name="modifier"/>
                     <tr>
-                        <td>matricule</td>
-                        <td>
-                            <input name="matricule" />
-                        </td>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="">Matricule:</span>
+                            <input name="matricule" style="width: 300px;" type="text" class="form-control" placeholder="Matricule" aria-describedby="sizing-addon2">
+                          </div>
+                          
                     </tr>
+                    <br>
                     <tr>
-                        <td>nom</td>
-                        <td>
-                            <input name="nom" />
-                        </td>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Nom:</span>
+                            <input name="nom"  style="width: 300px;" type="text" class="form-control" placeholder="Nom" aria-describedby="sizing-addon2">
+                          </div>
+                          
                     </tr>
+                    <br>
                     <tr>
-                        <td>prenom</td>
-                        <td>
-                            <input name="prenom" />
-                        </td>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Prénom:</span>
+                            <input name="prenom"  style="width: 300px;" type="text" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon2">
+                          </div>
+                          
                     </tr>
+                    <br>
                     <tr>
-                        <td>email</td>
-                        <td>
-                            <input name="email" />
-                        </td>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Email:</span>
+                            <input name="email"  style="width: 300px;" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon2">
+                          </div>
+                          
                     </tr>
+                    <br>
                     <tr>
-                        <td>gsm</td>
-                        <td>
-                            <input name="gsm" />
-                        </td>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">GSM:</span>
+                            <input name="gsm"  style="width: 300px;" type="text" class="form-control" placeholder="GSM" aria-describedby="sizing-addon2">
+                          </div>
+                          
+                    </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Filiere:</span>
+                            <select name="filiere"  style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
+                                
+                                {{#each filieres}}
+                                    <option value="{{code}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                          </div>
+                          
+                    </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Année d'accès:</span>
+                            <select name="annee"  style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
+                                {{#each annees}}
+                                    <option>{{annee}}</option>
+                                {{/each}}
+                            </select>
+                          </div>
+                          
                     </tr>
                 </table>
-
-                <input type="submit" value="Ajouter" class="btn btn-primary" />
-                <button class="btn btn-secondary" name="vider">Vider</button>
+                <br>
+                <input type="submit" value="Valider" class="btn btn-success" style="margin-left: 150px;width: 120px"/>
             </form>
         </div>
     </div>
-
+<!-- <br>
+<br>
+<br>
+<br>
+<br>
+<br>
     <table border="1">
         <tr>
             <td>matricule</td>
@@ -71,5 +109,5 @@
     </table>
     <br>
     <h4>upload</h4>
-    <input type="file" name="upload" />
+    <input type="file" name="upload" /> -->
 </template>

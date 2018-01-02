@@ -1,17 +1,17 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Etudiants, ETUDIANTS } from '../../../lib/Etudiants.js';
+import { ETUDIANTS } from '../../../lib/Etudiants.js';
 import { FILIERE } from '../../../lib/enum';
 import { ANNEE } from '../../../lib/enum';
 
 
-Template.home.onCreated(function helloOnCreated() {
+Template.modifier.onCreated(function helloOnCreated() {
   $('input[name="filiere"]').append('<option>test</option>');
   });
   
-  Template.home.helpers({
-    stagiaires(){
-      return STAGIAIRES.find({});
+  Template.modifier.helpers({
+    etudiants(){
+      return ETUDIANTS.find({});
     },filieres(){
       return FILIERE.filieres;
     },annees(){
@@ -20,7 +20,7 @@ Template.home.onCreated(function helloOnCreated() {
 
   });
   
-  Template.home.events({
+  Template.modifier.events({
     'submit .ajouterEtudiant'(event, instance) {
       event.preventDefault();
       if(event.target.modifier.value!=""){
@@ -63,12 +63,13 @@ Template.home.onCreated(function helloOnCreated() {
     event.target.gsm.value = '';
     event.target.modifier.value = '';
     },'click .btnDetails'(){
-      $('input[name="matricule"]').val(this.matricule);
+      /* $('input[name="matricule"]').val(this.matricule);
       $('input[name="nom"]').val(this.nom);
       $('input[name="prenom"]').val(this.prenom);
       $('input[name="email"]').val(this.email);
       $('input[name="gsm"]').val(this.gsm);
-      $('input[name="modifier"]').val(this._id);
+      $('input[name="modifier"]').val(this._id); */
+      
     },'change [name="upload"]'(event,template){
       Papa.parse( event.target.files[0], {
         header: true,

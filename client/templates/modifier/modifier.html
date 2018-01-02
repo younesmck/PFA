@@ -1,3 +1,39 @@
 <template name="modifier">
-    <h1>HHHHH</h1>
+
+        <div class="panel panel-default" style="width:80%;margin-left:10%;">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Liste des etudiants</div>
+              
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Matricule</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Gsm</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {{#each etudiants}}
+                            <tr>
+                                <td>{{matricule}}</td>
+                                <td>{{nom}}</td>
+                                <td>{{prenom}}</td>
+                                <td>{{email}}</td>
+                                <td>{{gsm}}</td>
+                                <td>
+                                    <button name="delete" class="btnDelete btn btn-danger">Delete</button>
+                                    <button name="details" class="btn-primary btn btnDetails">Detail</button>
+                                    <button name="stage" class="btn-warning btn btnDetails">Affecter Stage</button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                    </tbody>
+                        
+                    </table>
+              </div>
+        
 </template>
