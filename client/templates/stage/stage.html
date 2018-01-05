@@ -1,64 +1,150 @@
 <template name="stage">
-        <div style="width:60%; margin-left:20%;" class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Ajouter un stage</h3>
-                </div>
-                <div style="padding-left: 23%;" class="panel-body">
-                    <form class="ajouterStage">
-                        <table>
-                            <tr>
-                                <div class="input-group">
-                                    <span style="width: 130px;" class="input-group-addon" id="">Sujet:</span>
-                                    <input name="matricule" style="width: 300px;" type="text" class="form-control" placeholder="Matricule" aria-describedby="sizing-addon2">
-                                  </div>
-                                  
-                            </tr>
-                            <br>
-                            <tr>
-                                <div class="input-group">
-                                    <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Debut stage:</span>
-                                    <input type="date" name="nom"  style="width: 300px;" class="form-control" placeholder="Nom" aria-describedby="sizing-addon2">
-                                  </div>
-                                  
-                            </tr>
-                            <br>
-                            <tr>
-                                <div class="input-group">
-                                    <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Fin stage:</span>
-                                    <input type="date" name="nom"  style="width: 300px;"  class="form-control" placeholder="Nom" aria-describedby="sizing-addon2">
-                                  </div>
-                                  
-                            </tr>
-                            <br>
-                            <tr>
-                                <div class="input-group">
-                                    <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Nom Encadrant:</span>
-                                    <input name="prenom"  style="width: 300px;" type="text" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon2">
-                                  </div>
-                                  
-                            </tr>
-                            <br>
-                            <tr>
-                                <div class="input-group">
-                                    <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Email Encadrant:</span>
-                                    <input name="email"  style="width: 300px;" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon2">
-                                  </div>
-                                  
-                            </tr>
-                            <br>
-                            <tr>
-                                <div class="input-group">
-                                    <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">GSM Encadrant:</span>
-                                    <input name="gsm"  style="width: 300px;" type="text" class="form-control" placeholder="GSM" aria-describedby="sizing-addon2">
-                                  </div>
-                                  
-                            </tr>
-                            
-                            
-                        </table>
+    <div style="width:60%; margin-left:20%;" class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Affectation d'un stage à {{etudiant.nom}} {{etudiant.prenom}}</h3>
+        </div>
+        <div style="padding-left: 23%;" class="panel-body">
+            <form class="ajouterStage">
+                <table>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="">Sujet:</span>
+                            <input name="sujet" style="width: 300px;" type="text" class="form-control" placeholder="Sujet" aria-describedby="sizing-addon2">
+                        </div>
+
+                    </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Debut stage:</span>
+                            <input type="date" name="dateDebut" style="width: 300px;" class="form-control" placeholder="" aria-describedby="sizing-addon2">
+                        </div>
+
+                    </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Fin stage:</span>
+                            <input type="date" name="dateFin" style="width: 300px;" class="form-control" placeholder="" aria-describedby="sizing-addon2">
+                        </div>
+
+                    </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Nom Encadrant:</span>
+                            <input name="nomEncadrant" style="width: 300px;" type="text" class="form-control" placeholder="Nom Encadrant" aria-describedby="sizing-addon2">
+                        </div>
+
+                    </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Email Encadrant:</span>
+                            <input name="emailEncadrant" style="width: 300px;" type="text" class="form-control" placeholder="Email Encadrant" aria-describedby="sizing-addon2">
+                        </div>
+
+                    </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">GSM Encadrant:</span>
+                            <input name="gsmEncadrant" style="width: 300px;" type="text" class="form-control" placeholder="GSM Encadrant" aria-describedby="sizing-addon2">
+                        </div>
+
+                    </tr>
+                    <br>
+                    <tr id="chercher">
+                            <div class="input-group">
+                                <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Encadrant:</span>
+                                <input list="encadrants" name="encadrant" style="width: 300px;" class="form-control" placeholder="Chercher un encadrant ..."
+                                    aria-describedby="sizing-addon2">
+    
+                                <datalist id="encadrants">
+                                    {{#each encadrants}}
+                                    <option value="{{nom}}">{{nom}}</option>
+                                    {{/each}}
+                                </datalist>
+                            </div>
+                    </tr>
+                    <br>
+                    <tr id="chercher">
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Entreprise:</span>
+                            <input list="entreprises" name="entreprise" style="width: 300px;" class="form-control" placeholder="Chercher une entreprise ..."
+                                aria-describedby="sizing-addon2">
+
+                            <datalist id="entreprises">
+                                {{#each entreprises}}
+                                <option value="{{raisonSocial}}">{{raisonSocial}}</option>
+                                {{/each}}
+                            </datalist>
+                        </div>
+                        <a onclick="nouvelleEntreprise();" style="margin-left:31%; color:#3c763d;">Nouvelle entreprise ...</a>
+                    </tr>
+                    <div id="raisonSocial2" style="display: none;" class="panel panel-success">
+                        <div class="panel-heading">                        
+                            <span style="cursor:pointer;" class="glyphicon glyphicon-remove-sign pull-right" onclick="annuler();"></span>
+                            <h3 class="panel-title">Nouvelle Entreprise :</h3>
+                        </div>
+                        <div style="padding: 10px;" class="panel-body">
+                        <tr>
+                            <div class="input-group">
+                                <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Raison Social:</span>
+                                <input name="raisonSocial" style="width: 270px;" type="text" class="form-control" placeholder="Raison Social"
+                                    aria-describedby="sizing-addon2">
+                            </div>
+
+                        </tr>
                         <br>
-                        <input type="submit" value="Valider" class="btn btn-success" style="margin-left: 150px;width: 120px"/>
-                    </form>
-                </div>
-            </div>
+                        <tr>
+                            <div class="input-group">
+                                <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Ville:</span>
+                                <input name="ville" style="width: 270px;" type="text" class="form-control" placeholder="Ville" aria-describedby="sizing-addon2">
+                            </div>
+                        </tr>
+                        <br>
+                        <tr>
+                            <div class="input-group">
+                                <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Pays:</span>
+                                <input name="pays" style="width: 270px;" type="text" class="form-control" placeholder="Pays" aria-describedby="sizing-addon2">
+                            </div>
+                        </tr>
+                        <br>
+                        <tr>
+                            <div class="input-group">
+                                <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Adresse:</span>
+                                <input name="adresse" style="width: 270px;" type="text" class="form-control" placeholder="Adresse" aria-describedby="sizing-addon2">
+                            </div>
+                        </tr>
+                        <br>
+                        <tr>
+                            <div class="input-group">
+                                <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Tel:</span>
+                                <input name="tel" style="width: 270px;" type="text" class="form-control" placeholder="Tel" aria-describedby="sizing-addon2">
+                            </div>
+                        </tr>
+                    </div>
+                    </div>
+                </table>
+                <br>
+                <input type="hidden" value="old" name="test" id="test" />
+                <input type="submit" value="Valider" class="btn btn-success" style="margin-left: 150px;width: 120px" />
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        function nouvelleEntreprise() {
+            document.getElementById("raisonSocial2").style.display = "block";
+            document.getElementById("chercher").style.display = "none";
+            document.getElementById("test").value="new";
+        };
+        function annuler(){
+            document.getElementById("raisonSocial2").style.display = "none";
+            document.getElementById("chercher").style.display = "block";
+            document.getElementById("test").value="old";
+        }
+    </script>
 </template>

@@ -3,44 +3,43 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Etudiants, ETUDIANTS } from '../../../lib/Etudiants.js';
 import { FILIERE } from '../../../lib/enum';
 import { ANNEE } from '../../../lib/enum';
+import { Mongo } from 'meteor/mongo';
 
 
-Template.home.onCreated(function helloOnCreated() {
-  $('input[name="filiere"]').append('<option>test</option>');
+Template.detail.onCreated(function helloOnCreated() {
+
   });
   
-  Template.home.helpers({
-    filieres(){
+  Template.detail.helpers({
+    stagiaires(){
+      return STAGIAIRES.find({});
+    },filieres(){
       return FILIERE.filieres;
     },annees(){
       return ANNEE.annees;
+    },etudiant(){
+      return ETUDIANTS.find({_id:FlowRouter.getParam("_id")}).fetch()[0];
+    },equals(a,b){
+      return a===b;
     }
 
   });
   
-  Template.home.events({
-    'submit .ajouterEtudiant'(event, instance) {
+  Template.registerHelper('equals',(a,b)=>{
+    return a===b;
+  })
+
+  Template.detail.events({
+    'submit .detailEtudiant'(event, instance) {
       event.preventDefault();
-      if(event.target.modifier.value!=""){
-        STAGIAIRES.update({_id:event.target.modifier.value},{
+      ETUDIANTS.update({_id:FlowRouter.getParam("_id")},{
           matricule: event.target.matricule.value,
           nom: event.target.nom.value,
           prenom: event.target.prenom.value,
           email: event.target.email.value,
           gsm: event.target.gsm.value
         });
-      }
-      else{
-        ETUDIANTS.insert({
-          matricule: event.target.matricule.value,
-          nom: event.target.nom.value,
-          prenom: event.target.prenom.value,
-          email: event.target.email.value,
-          gsm: event.target.gsm.value,
-          filiere:event.target.filiere.value,
-          annee:event.target.annee.value
-        });
-      }
+      
       
     
   
@@ -53,6 +52,8 @@ Template.home.onCreated(function helloOnCreated() {
   
     },'click .btnDelete'(){
       STAGIAIRES.remove(this._id);
+    },'click .addStage'(){
+      FlowRouter.go('/stage/'+FlowRouter.getParam("_id"));
     },'click [name="Vider"]'(){
       event.target.matricule.value = '';
     event.target.nom.value = '';

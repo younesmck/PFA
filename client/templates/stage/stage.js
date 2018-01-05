@@ -1,57 +1,68 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { ETUDIANTS } from '../../../lib/Etudiants.js';
+import { ENTREPRISES } from '../../../lib/Entreprises.js';
 import { FILIERE } from '../../../lib/enum';
 import { ANNEE } from '../../../lib/enum';
+import { ENCADRANTS } from '../../../lib/Encadrants.js'
 
 
-Template.modifier.onCreated(function helloOnCreated() {
+Template.stage.onCreated(function helloOnCreated() {
   $('input[name="filiere"]').append('<option>test</option>');
   });
   
-  Template.modifier.helpers({
+  Template.stage.helpers({
     etudiants(){
       return ETUDIANTS.find({});
     },filieres(){
       return FILIERE.filieres;
     },annees(){
       return ANNEE.annees;
+    },etudiant(){
+      return ETUDIANTS.find({_id:FlowRouter.getParam("_id")}).fetch()[0];
+    },entreprises(){
+      return ENTREPRISES.find({});
+    },encadrants(){
+      return ENCADRANTS.find({});
     }
 
   });
   
-  Template.modifier.events({
-    'submit .ajouterEtudiant'(event, instance) {
+  Template.stage.events({
+    'submit .ajouterStage'(event, instance) {
       event.preventDefault();
-      if(event.target.modifier.value!=""){
-        STAGIAIRES.update({_id:event.target.modifier.value},{
-          matricule: event.target.matricule.value,
-          nom: event.target.nom.value,
-          prenom: event.target.prenom.value,
-          email: event.target.email.value,
-          gsm: event.target.gsm.value
-        });
+      var entreprise;
+      if(event.target.test.value=="new"){
+        entreprise={
+          raisonSocial:event.target.raisonSocial.value,
+          ville:event.target.ville.value,
+          pays:event.target.pays.value,
+          adresse:event.target.adresse.value,
+          tel:event.target.tel.value
+        };
+        ENTREPRISES.insert(entreprise);
+      }else{
+        var e =event.target.entreprise.value;
+        entreprise=ENTREPRISES.find({raisonSocial:e}).fetch()[0];
       }
-      else{
-        ETUDIANTS.insert({
-          matricule: event.target.matricule.value,
-          nom: event.target.nom.value,
-          prenom: event.target.prenom.value,
-          email: event.target.email.value,
-          gsm: event.target.gsm.value,
-          filiere:event.target.filiere.value,
-          annee:event.target.annee.value
-        });
+      console.log(entreprise);
+      ETUDIANTS.update({_id:FlowRouter.getParam("_id")},
+      {
+        $addToSet: { Stages: {
+          sujet:event.target.sujet.value,
+          debut:event.target.dateDebut.value,
+          fin:event.target.dateFin.value,
+          emailEncadrant:event.target.emailEncadrant.value,
+          nomEncadrant:event.target.nomEncadrant.value,
+          gsmEncadrant:event.target.gsmEncadrant.value,
+          entreprise:entreprise
+        } }
       }
+      )
       
     
   
-    event.target.matricule.value = '';
-    event.target.nom.value = '';
-    event.target.prenom.value = '';
-    event.target.email.value = '';
-    event.target.gsm.value = '';
-    event.target.modifier.value = '';
+    FlowRouter.go("/detail/"+FlowRouter.getParam("_id"));
   
     },'click .btnDelete'(){
       STAGIAIRES.remove(this._id);
@@ -61,14 +72,14 @@ Template.modifier.onCreated(function helloOnCreated() {
     event.target.prenom.value = '';
     event.target.email.value = '';
     event.target.gsm.value = '';
-    event.target.modifier.value = '';
+    event.target.stage.value = '';
     },'click .btnDetails'(){
       /* $('input[name="matricule"]').val(this.matricule);
       $('input[name="nom"]').val(this.nom);
       $('input[name="prenom"]').val(this.prenom);
       $('input[name="email"]').val(this.email);
       $('input[name="gsm"]').val(this.gsm);
-      $('input[name="modifier"]').val(this._id); */
+      $('input[name="stage"]').val(this._id); */
       
     },'change [name="upload"]'(event,template){
       Papa.parse( event.target.files[0], {

@@ -1,18 +1,16 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { ETUDIANTS } from '../../../lib/Etudiants.js';
+import { Etudiants, ETUDIANTS } from '../../../lib/Etudiants.js';
 import { FILIERE } from '../../../lib/enum';
 import { ANNEE } from '../../../lib/enum';
 
 
-Template.modifier.onCreated(function helloOnCreated() {
+Template.layout.onCreated(function helloOnCreated() {
   $('input[name="filiere"]').append('<option>test</option>');
   });
   
-  Template.modifier.helpers({
-    etudiants(){
-      return ETUDIANTS.find({});
-    },filieres(){
+  Template.layout.helpers({
+    filieres(){
       return FILIERE.filieres;
     },annees(){
       return ANNEE.annees;
@@ -20,7 +18,7 @@ Template.modifier.onCreated(function helloOnCreated() {
 
   });
   
-  Template.modifier.events({
+  Template.layout.events({
     'submit .ajouterEtudiant'(event, instance) {
       event.preventDefault();
       if(event.target.modifier.value!=""){
@@ -55,6 +53,8 @@ Template.modifier.onCreated(function helloOnCreated() {
   
     },'click .btnDelete'(){
       STAGIAIRES.remove(this._id);
+    },'click .ajout'(){
+      FlowRouter.go("/ajout");
     },'click [name="Vider"]'(){
       event.target.matricule.value = '';
     event.target.nom.value = '';
@@ -63,13 +63,12 @@ Template.modifier.onCreated(function helloOnCreated() {
     event.target.gsm.value = '';
     event.target.modifier.value = '';
     },'click .btnDetails'(){
-      /* $('input[name="matricule"]').val(this.matricule);
+      $('input[name="matricule"]').val(this.matricule);
       $('input[name="nom"]').val(this.nom);
       $('input[name="prenom"]').val(this.prenom);
       $('input[name="email"]').val(this.email);
       $('input[name="gsm"]').val(this.gsm);
-      $('input[name="modifier"]').val(this._id); */
-      
+      $('input[name="modifier"]').val(this._id);
     },'change [name="upload"]'(event,template){
       Papa.parse( event.target.files[0], {
         header: true,

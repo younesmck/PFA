@@ -26,3 +26,5 @@ kadira:flow-router
 zimme:active-route
 kadira:blaze-layout
 harrison:papa-parse
+raix:handlebar-helpers
+arillo:flow-router-helpers
