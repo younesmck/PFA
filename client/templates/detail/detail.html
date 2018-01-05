@@ -7,90 +7,91 @@
         <div style="padding-left: 23%;" class="panel-body">
             <form class="detailEtudiant">
                 <table>
-                    <input type="hidden" value="" name="modifier"/>
+                    <input type="hidden" value="" name="modifier" />
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="">Matricule:</span>
-                            <input name="matricule" style="width: 300px;" type="text" class="form-control" placeholder="Matricule" aria-describedby="sizing-addon2" value="{{etudiant.matricule}}">
-                          </div>
-                          
+                            <input name="matricule" style="width: 300px;" type="text" class="form-control" placeholder="Matricule" aria-describedby="sizing-addon2"
+                                value="{{etudiant.matricule}}">
+                        </div>
+
                     </tr>
                     <br>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Nom:</span>
-                            <input name="nom"  style="width: 300px;" type="text" class="form-control" placeholder="Nom" aria-describedby="sizing-addon2" value="{{etudiant.nom}}">
-                          </div>
-                          
+                            <input name="nom" style="width: 300px;" type="text" class="form-control" placeholder="Nom" aria-describedby="sizing-addon2"
+                                value="{{etudiant.nom}}">
+                        </div>
+
                     </tr>
                     <br>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Prénom:</span>
-                            <input name="prenom"  style="width: 300px;" type="text" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon2" value="{{etudiant.prenom}}">
-                          </div>
-                          
+                            <input name="prenom" style="width: 300px;" type="text" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon2"
+                                value="{{etudiant.prenom}}">
+                        </div>
+
                     </tr>
                     <br>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Email:</span>
-                            <input name="email"  style="width: 300px;" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon2" value="{{etudiant.email}}">
-                          </div>
-                          
+                            <input name="email" style="width: 300px;" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon2"
+                                value="{{etudiant.email}}">
+                        </div>
+
                     </tr>
                     <br>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">GSM:</span>
-                            <input name="gsm"  style="width: 300px;" type="text" class="form-control" placeholder="GSM" aria-describedby="sizing-addon2" value="{{etudiant.gsm}}">
-                          </div>
-                          
+                            <input name="gsm" style="width: 300px;" type="text" class="form-control" placeholder="GSM" aria-describedby="sizing-addon2"
+                                value="{{etudiant.gsm}}">
+                        </div>
+
                     </tr>
                     <br>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Filiere:</span>
-                            <select name="filiere"  style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
-                                
-                                {{#each filieres}}
-                                    {{#if equals code etudiant.filiere }} 
-                                        <option value="{{code}}" selected>{{name}}</option>
-                                    {{else}}
-                                    <option value="{{code}}">{{name}}</option>
-                                    {{/if}}
-                                    
-                                {{/each}}
+                            <select name="filiere" style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
+
+                                {{#each filieres}} {{#if equals code etudiant.filiere }}
+                                <option value="{{code}}" selected>{{name}}</option>
+                                {{else}}
+                                <option value="{{code}}">{{name}}</option>
+                                {{/if}} {{/each}}
                             </select>
-                          </div>
-                          
+                        </div>
+
                     </tr>
                     <br>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Année d'accès:</span>
-                            <select name="annee"  style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
-                                {{#each annees}}
-                                    {{#if equals annee etudiant.annee }} 
-                                        <option selected>{{annee}}</option>
-                                    {{else}}
-                                        <option>{{annee}}</option>
-                                    {{/if}}
-                                {{/each}}
+                            <select name="annee" style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
+                                {{#each annees}} {{#if equals annee etudiant.annee }}
+                                <option selected>{{annee}}</option>
+                                {{else}}
+                                <option>{{annee}}</option>
+                                {{/if}} {{/each}}
                             </select>
-                          </div>
-                          
+                        </div>
+
                     </tr>
                 </table>
                 <br>
-                <input type="submit" value="Valider" class="btn btn-success" style="margin-left: 150px;width: 120px"/>
+                <input type="submit" value="Valider" class="btn btn-success" style="margin-left: 150px;width: 120px" />
             </form>
         </div>
     </div>
 
     <div style="width:60%; margin-left:20%;" class="panel panel-success">
         <div class="panel-heading">
-            <span style="cursor:pointer;" class="glyphicon glyphicon-plus pull-right addStage"></span>
+            <span style="cursor:pointer;" class="glyphicon glyphicon-plus pull-right addStage" data-toggle="tooltip" data-placement="top"
+                title="Ajouter un stage"></span>
             <h3 class="panel-title">Liste des stages</h3>
         </div>
         <div class="panel-body">
@@ -106,20 +107,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                        {{#each etudiant.Stages}}
-                        <tr>
-                            <td>{{sujet}}</td>
-                            <td>{{debut}}</td>
-                            <td>{{fin}}</td>
-                            <td>{{nomEncadrant}}</td>
-                            <td>{{emailEncadrant}}</td>
-                            <td>{{gsmEncadrant}}</td>
-                        </tr>
-                        {{/each}}
+                    {{#each etudiant.Stages}}
+                    <tr>
+                        <td>{{sujet}}</td>
+                        <td>{{debut}}</td>
+                        <td>{{fin}}</td>
+                        <td>{{nomEncadrant}}</td>
+                        <td>{{emailEncadrant}}</td>
+                        <td>{{gsmEncadrant}}</td>
+                    </tr>
+                    {{/each}}
                 </tbody>
-                    
-                </table>
+
+            </table>
         </div>
     </div>
-    
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
 </template>
