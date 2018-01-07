@@ -84,7 +84,8 @@
                     </tr>
                     <div id="raisonSocial2" style="display: none;" class="panel panel-success">
                         <div class="panel-heading">                        
-                            <span style="cursor:pointer;" class="glyphicon glyphicon-remove-sign pull-right" onclick="annuler();"></span>
+                            <span style="cursor:pointer;" class="glyphicon glyphicon-remove-sign pull-right" data-toggle="tooltip" data-placement="top"
+                            title="Annuler" onclick="annuler();"></span>
                             <h3 class="panel-title">Nouvelle Entreprise :</h3>
                         </div>
                         <div style="padding: 10px;" class="panel-body">
@@ -145,6 +146,9 @@
             document.getElementById("raisonSocial2").style.display = "none";
             document.getElementById("chercher").style.display = "block";
             document.getElementById("test").value="old";
-        }
+        };
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 </template>

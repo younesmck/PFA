@@ -1,21 +1,12 @@
-<template name="home">
+<template name="encadrant">
 
     <div style="width:60%; margin-left:20%;" class="panel panel-success">
         <div class="panel-heading">
-            <h3 class="panel-title">Ajouter un étudiant</h3>
+            <h3 class="panel-title">Ajouter un encadrant</h3>
         </div>
         <div style="padding-left: 23%;" class="panel-body">
-            <form class="ajouterEtudiant">
+            <form class="ajouterEncadrant">
                 <table>
-                    <input type="hidden" value="" name="modifier"/>
-                    <tr>
-                        <div class="input-group input">
-                            <span style="width: 130px;" class="input-group-addon" id="">Matricule:</span>
-                            <input name="matricule" style="width: 300px;" type="text" class="form-control" placeholder="Matricule" aria-describedby="sizing-addon2">
-                          </div>
-                          
-                    </tr>
-                    <br>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Nom:</span>
@@ -63,12 +54,8 @@
                     <br>
                     <tr>
                         <div class="input-group">
-                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Année d'accès:</span>
-                            <select name="annee"  style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
-                                {{#each annees}}
-                                    <option>{{annee}}</option>
-                                {{/each}}
-                            </select>
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Grade:</span>
+                            <input name="grade"  style="width: 300px;" type="text" class="form-control" placeholder="Grade" aria-describedby="sizing-addon2">
                           </div>
                           
                     </tr>
