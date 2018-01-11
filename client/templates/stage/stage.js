@@ -57,6 +57,7 @@ Template.stage.onCreated(function helloOnCreated() {
           emailEncadrant:event.target.emailEncadrant.value,
           nomEncadrant:event.target.nomEncadrant.value,
           gsmEncadrant:event.target.gsmEncadrant.value,
+          encadrantEcole:event.target.encadrant.value,
           niveaustage:event.target.niveaustage.value,
           entreprise:entreprise
         } }
