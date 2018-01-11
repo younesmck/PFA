@@ -55,6 +55,18 @@
                     </tr>
                     <br>
                     <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Niveau courant:</span>
+                            <select name="niveaustage"  style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
+                                {{#each niveaustages}}
+                                    <option>{{niveau}}</option>
+                                {{/each}}
+                            </select>
+                          </div>
+                          
+                    </tr>
+                    <br>
+                    <tr>
                             <div class="input-group">
                                 <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Encadrant:</span>
                                 <input list="encadrants" name="encadrant" style="width: 300px;" class="form-control" placeholder="Chercher un encadrant ..."

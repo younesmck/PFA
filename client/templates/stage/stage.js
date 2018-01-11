@@ -3,7 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { ETUDIANTS } from '../../../lib/Etudiants.js';
 import { ENTREPRISES } from '../../../lib/Entreprises.js';
 import { FILIERE } from '../../../lib/enum';
-import { ANNEE } from '../../../lib/enum';
+import { ANNEE,NIVEAUSTAGE } from '../../../lib/enum';
 import { ENCADRANTS } from '../../../lib/Encadrants.js'
 
 
@@ -24,6 +24,8 @@ Template.stage.onCreated(function helloOnCreated() {
       return ENTREPRISES.find({});
     },encadrants(){
       return ENCADRANTS.find({});
+    },niveaustages(){
+      return NIVEAUSTAGE.niveaustages;
     }
 
   });
@@ -55,6 +57,7 @@ Template.stage.onCreated(function helloOnCreated() {
           emailEncadrant:event.target.emailEncadrant.value,
           nomEncadrant:event.target.nomEncadrant.value,
           gsmEncadrant:event.target.gsmEncadrant.value,
+          niveaustage:event.target.niveaustage.value,
           entreprise:entreprise
         } }
       }

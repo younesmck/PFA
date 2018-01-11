@@ -1,0 +1,42 @@
+<template name="dashboard">
+
+    <div style="width:60%; margin-left:20%;" class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Statistiques :</h3>
+        </div>
+        <div style="padding-left: 10%;" class="panel-body">
+            
+                <table class="table">
+                    <tr>
+                        <th>Niveau</th>
+                        <th>Avec stage</th>
+                        <th>Sans stage</th>
+                        <th>Pourcentage</th>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>3éme année</td>
+                        <td style="padding-left: 30px">{{etudiant3a}}</td>
+                        <td style="padding-left: 30px">{{etudiant3s}}</td>
+                        <td style="padding-left: 30px">{{etudiant3p}}%</td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>4éme année</td>
+                        <td style="padding-left: 30px">{{etudiant4a}}</td>
+                        <td style="padding-left: 30px">{{etudiant4s}}</td>
+                        <td style="padding-left: 30px">{{#if etudiant4p}}{{etudiant4p}}%{{else}}-%{{/if}}</td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>5éme année</td>
+                        <td style="padding-left: 30px">{{etudiant5a}}</td>
+                        <td style="padding-left: 30px">{{etudiant5s}}</td>
+                        <td style="padding-left: 30px">{{etudiant5p}}%</td>
+                    </tr>
+                </table>
+                <br>
+            
+        </div>
+    </div>
+</template>

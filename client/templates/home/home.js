@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Etudiants, ETUDIANTS } from '../../../lib/Etudiants.js';
-import { FILIERE } from '../../../lib/enum';
+import { ETUDIANTS } from '../../../lib/Etudiants.js';
+import { FILIERE, NIVEAU } from '../../../lib/enum';
 import { ANNEE } from '../../../lib/enum';
 
 
@@ -14,6 +14,8 @@ Template.home.onCreated(function helloOnCreated() {
       return FILIERE.filieres;
     },annees(){
       return ANNEE.annees;
+    },niveaux(){
+      return NIVEAU.niveaux;
     }
 
   });
@@ -21,16 +23,7 @@ Template.home.onCreated(function helloOnCreated() {
   Template.home.events({
     'submit .ajouterEtudiant'(event, instance) {
       event.preventDefault();
-      if(event.target.modifier.value!=""){
-        STAGIAIRES.update({_id:event.target.modifier.value},{
-          matricule: event.target.matricule.value,
-          nom: event.target.nom.value,
-          prenom: event.target.prenom.value,
-          email: event.target.email.value,
-          gsm: event.target.gsm.value
-        });
-      }
-      else{
+
         ETUDIANTS.insert({
           matricule: event.target.matricule.value,
           nom: event.target.nom.value,
@@ -38,9 +31,10 @@ Template.home.onCreated(function helloOnCreated() {
           email: event.target.email.value,
           gsm: event.target.gsm.value,
           filiere:event.target.filiere.value,
-          annee:event.target.annee.value
+          annee:event.target.annee.value,
+          niveau: event.target.niveau.value
         });
-      }
+        FlowRouter.go('/liste');
       
     
   
@@ -67,19 +61,6 @@ Template.home.onCreated(function helloOnCreated() {
       $('input[name="email"]').val(this.email);
       $('input[name="gsm"]').val(this.gsm);
       $('input[name="modifier"]').val(this._id);
-    },'change [name="upload"]'(event,template){
-      Papa.parse( event.target.files[0], {
-        header: true,
-        complete( results, file ) {
-          for ( let i = 0; i < results.data.length; i++ ) {
-            let item   = results.data[ i ];
-      
-              STAGIAIRES.insert( item );
-          }
-
-              alert("Fin");
-        }
-      });
     }
   });
   
