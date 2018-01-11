@@ -40,6 +40,7 @@ Template.home.onCreated(function helloOnCreated() {
           filiere:event.target.filiere.value,
           annee:event.target.annee.value
         });
+        FlowRouter.go("/liste");
       }
       
     
