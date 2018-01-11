@@ -7,7 +7,7 @@
         <div style="padding-left: 23%;" class="panel-body">
             <form class="detailEtudiant">
                 <table>
-                    <input type="hidden" value="" name="modifier" />
+                    <input type="hidden" value="" name="modifier"/>
                     <tr>
                         <div class="input-group">
                             <span style="width: 130px;" class="input-group-addon" id="">Matricule:</span>
@@ -81,6 +81,20 @@
                         </div>
 
                     </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Niveau</span>
+                            <select name="niveau" style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
+                                {{#each niveaux}} {{#if equals niveau etudiant.niveau }}
+                                <option selected>{{niveau}}</option>
+                                {{else}}
+                                <option>{{niveau}}</option>
+                                {{/if}} {{/each}}
+                            </select>
+                        </div>
+
+                    </tr>
                 </table>
                 <br>
                 <input type="submit" value="Valider" class="btn btn-success" style="margin-left: 150px;width: 120px" />
@@ -104,6 +118,7 @@
                         <th>Nom Encadrant</th>
                         <th>Email Encadrant</th>
                         <th>GSM Encadrant</th>
+                        <th>Niveau du stage</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,6 +130,7 @@
                         <td>{{nomEncadrant}}</td>
                         <td>{{emailEncadrant}}</td>
                         <td>{{gsmEncadrant}}</td>
+                        <td>{{niveaustage}}</td>
                     </tr>
                     {{/each}}
                 </tbody>

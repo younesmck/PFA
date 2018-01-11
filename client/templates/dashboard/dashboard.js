@@ -3,27 +3,38 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Etudiants, ETUDIANTS } from '../../../lib/Etudiants.js';
 import { FILIERE } from '../../../lib/enum';
 import { ANNEE } from '../../../lib/enum';
-import { NIVEAU } from '../../../lib/enum';
 import { Mongo } from 'meteor/mongo';
 
 
-Template.detail.onCreated(function helloOnCreated() {
+Template.dashboard.onCreated(function helloOnCreated() {
 
   });
   
-  Template.detail.helpers({
+  Template.dashboard.helpers({
     stagiaires(){
       return STAGIAIRES.find({});
     },filieres(){
       return FILIERE.filieres;
     },annees(){
       return ANNEE.annees;
-    },etudiant(){
-      return ETUDIANTS.find({_id:FlowRouter.getParam("_id")}).fetch()[0];
-    },equals(a,b){
-      return a===b;
-    },niveaux(){
-      return NIVEAU.niveaux;
+    },etudiant3a(){
+      return ETUDIANTS.find({"niveau":"3ème Année","Stages.niveaustage":"3ème Année"}).count();
+    },etudiant4a(){
+      return ETUDIANTS.find({"niveau":"4ème Année","Stages.niveaustage":"4ème Année"}).count();
+    },etudiant5a(){
+      return ETUDIANTS.find({"niveau":"5ème Année","Stages.niveaustage":"5ème Année"}).count();
+    },etudiant3s(){
+      return ETUDIANTS.find({"niveau":"3ème Année"}).count() - ETUDIANTS.find({"niveau":"3ème Année","Stages.niveaustage":"3ème Année"}).count();
+    },etudiant4s(){
+      return ETUDIANTS.find({"niveau":"4ème Année"}).count() - ETUDIANTS.find({"niveau":"4ème Année","Stages.niveaustage":"4ème Année"}).count();
+    },etudiant5s(){
+      return ETUDIANTS.find({"niveau":"5ème Année"}).count() - ETUDIANTS.find({"niveau":"5ème Année","Stages.niveaustage":"5ème Année"}).count();
+    },etudiant3p(){
+      return (ETUDIANTS.find({"niveau":"3ème Année","Stages.niveaustage":"3ème Année"}).count()/ETUDIANTS.find({"niveau":"3ème Année"}).count())*100;
+    },etudiant4p(){
+      return (ETUDIANTS.find({"niveau":"4ème Année","Stages.niveaustage":"4ème Année"}).count()/ETUDIANTS.find({"niveau":"4ème Année"}).count())*100;
+    },etudiant5p(){
+      return (ETUDIANTS.find({"niveau":"5ème Année","Stages.niveaustage":"5ème Année"}).count()/ETUDIANTS.find({"niveau":"5ème Année"}).count())*100;
     }
 
   });
@@ -32,8 +43,8 @@ Template.detail.onCreated(function helloOnCreated() {
     return a===b;
   })
 
-  Template.detail.events({
-    'submit .detailEtudiant'(event, instance) {
+  Template.dashboard.events({
+    'submit .dashboardEtudiant'(event, instance) {
       event.preventDefault();
       ETUDIANTS.update({_id:FlowRouter.getParam("_id")},{
           matricule: event.target.matricule.value,
@@ -64,7 +75,7 @@ Template.detail.onCreated(function helloOnCreated() {
     event.target.email.value = '';
     event.target.gsm.value = '';
     event.target.modifier.value = '';
-    },'click .btnDetails'(){
+    },'click .btndetails'(){
       $('input[name="matricule"]').val(this.matricule);
       $('input[name="nom"]').val(this.nom);
       $('input[name="prenom"]').val(this.prenom);

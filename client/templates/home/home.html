@@ -72,6 +72,18 @@
                           </div>
                           
                     </tr>
+                    <br>
+                    <tr>
+                        <div class="input-group">
+                            <span style="width: 130px;" class="input-group-addon" id="sizing-addon2">Niveau courant:</span>
+                            <select name="niveau"  style="width: 300px;" type="text" class="form-control" aria-describedby="sizing-addon2">
+                                {{#each niveaux}}
+                                    <option>{{niveau}}</option>
+                                {{/each}}
+                            </select>
+                          </div>
+                          
+                    </tr>
                 </table>
                 <br>
                 <input type="submit" value="Valider" class="btn btn-success" style="margin-left: 150px;width: 120px"/>

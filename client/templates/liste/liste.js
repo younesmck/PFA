@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { ETUDIANTS } from '../../../lib/Etudiants.js';
 import { FILIERE } from '../../../lib/enum';
-import { ANNEE } from '../../../lib/enum';
+import { ANNEE,NIVEAU } from '../../../lib/enum';
 
 
 Template.liste.onCreated(function helloOnCreated() {
@@ -21,39 +21,7 @@ Template.liste.onCreated(function helloOnCreated() {
   });
   
   Template.liste.events({
-    'submit .ajouterEtudiant'(event, instance) {
-      event.preventDefault();
-      if(event.target.liste.value!=""){
-        STAGIAIRES.update({_id:event.target.liste.value},{
-          matricule: event.target.matricule.value,
-          nom: event.target.nom.value,
-          prenom: event.target.prenom.value,
-          email: event.target.email.value,
-          gsm: event.target.gsm.value
-        });
-      }
-      else{
-        ETUDIANTS.insert({
-          matricule: event.target.matricule.value,
-          nom: event.target.nom.value,
-          prenom: event.target.prenom.value,
-          email: event.target.email.value,
-          gsm: event.target.gsm.value,
-          filiere:event.target.filiere.value,
-          annee:event.target.annee.value
-        });
-      }
-      
-    
-  
-    event.target.matricule.value = '';
-    event.target.nom.value = '';
-    event.target.prenom.value = '';
-    event.target.email.value = '';
-    event.target.gsm.value = '';
-    event.target.liste.value = '';
-  
-    },'click .btnDelete'(){
+    'click .btnDelete'(){
       ETUDIANTS.remove(this._id);
     },'click [name="Vider"]'(){
       event.target.matricule.value = '';
