@@ -34,16 +34,10 @@ Template.home.onCreated(function helloOnCreated() {
           annee:event.target.annee.value,
           niveau: event.target.niveau.value
         });
-        FlowRouter.go('/liste');
+        FlowRouter.go("/liste");
       
-    
-  
-    event.target.matricule.value = '';
-    event.target.nom.value = '';
-    event.target.prenom.value = '';
-    event.target.email.value = '';
-    event.target.gsm.value = '';
-    event.target.modifier.value = '';
+      
+   
   
     },'click .btnDelete'(){
       STAGIAIRES.remove(this._id);
